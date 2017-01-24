@@ -1,3 +1,5 @@
+
+
 class View
   def display_all_recipes(recipes)
     puts '------------'
@@ -31,6 +33,25 @@ class View
     return gets.chomp.to_i - 1
   end
 
+  def ask_for_keyword
+    puts 'Which ingredient do you wnat to search?'
+    print '>'
+    return gets.chomp
+  end
+
+  def display_titles(titles)
+    puts ""
+    titles.each_with_index do |title, index|
+      puts "#{index+1}. #{title[:title]}"
+    end
+    puts ""
+  end
+
+  def ask_for_recipe_number
+    puts "Which recipe do you want to import?"
+    print ">"
+    gets.chomp.to_i - 1
+  end
 end
 
 

@@ -1,5 +1,6 @@
 require_relative 'view'
 require_relative 'recipe'
+require_relative 'scrape'
 
 class Controller
   def initialize(cookbook)
@@ -34,6 +35,21 @@ class Controller
     index = @view.ask_for_index
     #give the index to the cookbook
     @cookbook.delete(index)
+  end
+
+  def import
+
+    keyword = @view.ask_for_keyword
+    new_scrape = Scrape.new(keyword)
+    titles = new_scrape.get_titles
+    @view.display_titles(titles)
+    index = @view.ask_for_recipe_number
+    recipe = titles[index][:title]
+    scrape = new_scrape.get_recipe(index)
+    description = scrape.get_description
+    rating = scrape.get_rating
+    new_recipe = Recipe.new(recipe, description, rating)
+    @cookbook.add(new_recipe)
   end
 end
 

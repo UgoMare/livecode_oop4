@@ -16,6 +16,8 @@ class Router
         @controller.add
       when 3
         @controller.destroy
+      when 4
+        @controller.import
       else
         puts 'You dummy'
       end
@@ -28,5 +30,6 @@ class Router
     puts '1- List all the recipes'
     puts '2- Add a recipe'
     puts '3- Remove a recipe'
+    puts '4- Import'
   end
 end
